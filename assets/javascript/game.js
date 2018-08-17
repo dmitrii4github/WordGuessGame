@@ -1,22 +1,28 @@
+var musician = "Mad";
+var numberOfGuesses = 10;
+var lettersGuessed = "";
+var currentWord = null;
+var initializePlaceholder = true;
+var musicianPlaceholder = "";
+
 document.onkeyup = function(event) {
 
-    var musician = "Modern Talking";
-    var numberOfGuesses = 10;
+    currentWord = document.getElementById("current_word"); 
 
     //Display the same number of '_' as the length of musician string
-    var musicianPlaceholder = "_";
-    for (var i=0; i<musician.length-1; i++) {
-        musicianPlaceholder += " ";
-        musicianPlaceholder += "_";
+    if (initializePlaceholder) {
+        musicianPlaceholder = "_";
+        for (var i=0; i<musician.length-1; i++) {
+            musicianPlaceholder += " ";
+            musicianPlaceholder += "_";
+        }
+        currentWord.textContent = musicianPlaceholder;
+        initializePlaceholder = false;
     }
-    var currentWord = document.getElementById("current_word"); 
-    currentWord.textContent = musicianPlaceholder;
 
     // Determines which key was pressed.
     var userGuess = event.key;
     alert(userGuess);
-
-    var lettersGuessed = "";
 
     //Display the letter
     var userGuessIndices = getAllIndices(musician, userGuess[0]);
@@ -25,15 +31,22 @@ document.onkeyup = function(event) {
     if (userGuessIndices.length != 0) {
 
         //First, display the musician placeholder with letters that were just guessed
-        musicianPlaceholder = "";
-        for (var i=0; i<musician.length; i++) {
-             if (userGuessIndices.indexOf(i) != -1) {
-                 musicianPlaceholder += musician[i];
-             } else {
-                musicianPlaceholder += "_";
-             }
-             musicianPlaceholder += " ";
-         }
+        var newMusicianPlaceholder = "";
+        alert("starting loop");
+        alert(musicianPlaceholder);
+        alert(newMusicianPlaceholder);
+        for (var i=0; i<musicianPlaceholder.length; i++) {
+            if ((userGuessIndices.indexOf(i) != -1) || ((musicianPlaceholder[i] != "_") && (musicianPlaceholder[i] != " "))) {
+                newMusicianPlaceholder += musician[i];
+            } else if (musicianPlaceholder[i] == "_") {
+                newMusicianPlaceholder += "_";
+            } else {
+                newMusicianPlaceholder += " ";
+            }
+            alert(newMusicianPlaceholder);
+        }
+
+        musicianPlaceholder = newMusicianPlaceholder;
 
          //Second, display what letters have been guessed
          lettersGuessed += musician[userGuessIndices[0]];
