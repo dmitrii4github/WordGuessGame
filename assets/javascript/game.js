@@ -16,20 +16,29 @@ document.onkeyup = function(event) {
     alert(userGuess);
 
     //Display the letter
-    userGuessIndex = musician.indexOf(userGuess[0]);
-    alert(userGuessIndex);
-    if (userGuessIndex != -1) {
+    var userGuessIndices = getAllIndices(musician, userGuess[0]);
+    alert(userGuessIndices[0]);
+    alert(userGuessIndices[1]);
+    if (userGuessIndices.length != 0) {
         musicianPlaceholder = "";
         for (var i=0; i<musician.length; i++) {
-            if (i == userGuessIndex) {
-                musicianPlaceholder += musician[i];
-            } else {
-               musicianPlaceholder += "_";
-            }
-            musicianPlaceholder += " ";
-        }
+             if (userGuessIndices.indexOf(i) != -1) {
+                 musicianPlaceholder += musician[i];
+             } else {
+                musicianPlaceholder += "_";
+             }
+             musicianPlaceholder += " ";
+         }
     }    
     alert(musicianPlaceholder);
     currentWord.textContent = musicianPlaceholder;
     
+}
+
+function getAllIndices(arr, val) {
+    var indices = [], i = -1;
+    while ((i = arr.indexOf(val, i+1)) != -1){
+        indices.push(i);
+    }
+    return indices;
 }
