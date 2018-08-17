@@ -1,4 +1,4 @@
-var musician = "Mad";
+var musician = "M a d";
 var numberOfGuesses = 10;
 var lettersGuessed = "";
 var currentWord = null;
@@ -11,10 +11,12 @@ document.onkeyup = function(event) {
 
     //Display the same number of '_' as the length of musician string
     if (initializePlaceholder) {
-        musicianPlaceholder = "_";
-        for (var i=0; i<musician.length-1; i++) {
-            musicianPlaceholder += " ";
-            musicianPlaceholder += "_";
+        for (var i=0; i<musician.length; i++) {
+            if (musician[i] == " ") {
+                musicianPlaceholder += " ";
+            } else {
+                musicianPlaceholder += "_";
+            }
         }
         currentWord.textContent = musicianPlaceholder;
         initializePlaceholder = false;
@@ -33,8 +35,8 @@ document.onkeyup = function(event) {
         //First, display the musician placeholder with letters that were just guessed
         var newMusicianPlaceholder = "";
         alert("starting loop");
-        alert(musicianPlaceholder);
-        alert(newMusicianPlaceholder);
+        alert("'"+musicianPlaceholder+"'");
+        alert("'"+newMusicianPlaceholder+"'");
         for (var i=0; i<musicianPlaceholder.length; i++) {
             if ((userGuessIndices.indexOf(i) != -1) || ((musicianPlaceholder[i] != "_") && (musicianPlaceholder[i] != " "))) {
                 newMusicianPlaceholder += musician[i];
