@@ -1,6 +1,7 @@
 document.onkeyup = function(event) {
 
     var musician = "Modern Talking";
+    var numberOfGuesses = 10;
 
     //Display the same number of '_' as the length of musician string
     var musicianPlaceholder = "_";
@@ -32,6 +33,13 @@ document.onkeyup = function(event) {
     }    
     alert(musicianPlaceholder);
     currentWord.textContent = musicianPlaceholder;
+
+    numberOfGuesses--;
+
+    var guessNumber = document.getElementById("guess_number"); 
+    guessNumber.textContent = numberOfGuesses;
+
+
     
 }
 
