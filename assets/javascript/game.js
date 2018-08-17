@@ -37,6 +37,7 @@ document.onkeyup = function(event) {
 
          //Second, display what letters have been guessed
          lettersGuessed += musician[userGuessIndices[0]];
+         lettersGuessed += " ";
     }    
     alert(musicianPlaceholder);
     currentWord.textContent = musicianPlaceholder;
@@ -47,7 +48,7 @@ document.onkeyup = function(event) {
     guessNumber.textContent = numberOfGuesses;
 
     var lettersGuessedDiv = document.getElementById("letters_guessed");
-    lettersGuessedStringDiv.textContent = lettersGuessed;
+    lettersGuessedDiv.textContent = lettersGuessed;
 
 }
 
