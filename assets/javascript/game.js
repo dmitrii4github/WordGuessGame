@@ -16,11 +16,15 @@ document.onkeyup = function(event) {
     var userGuess = event.key;
     alert(userGuess);
 
+    var lettersGuessed = "";
+
     //Display the letter
     var userGuessIndices = getAllIndices(musician, userGuess[0]);
     alert(userGuessIndices[0]);
     alert(userGuessIndices[1]);
     if (userGuessIndices.length != 0) {
+
+        //First, display the musician placeholder with letters that were just guessed
         musicianPlaceholder = "";
         for (var i=0; i<musician.length; i++) {
              if (userGuessIndices.indexOf(i) != -1) {
@@ -30,6 +34,9 @@ document.onkeyup = function(event) {
              }
              musicianPlaceholder += " ";
          }
+
+         //Second, display what letters have been guessed
+         lettersGuessed += musician[userGuessIndices[0]];
     }    
     alert(musicianPlaceholder);
     currentWord.textContent = musicianPlaceholder;
@@ -39,8 +46,9 @@ document.onkeyup = function(event) {
     var guessNumber = document.getElementById("guess_number"); 
     guessNumber.textContent = numberOfGuesses;
 
+    var lettersGuessedDiv = document.getElementById("letters_guessed");
+    lettersGuessedStringDiv.textContent = lettersGuessed;
 
-    
 }
 
 function getAllIndices(arr, val) {
