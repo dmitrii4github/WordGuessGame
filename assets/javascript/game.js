@@ -1,13 +1,24 @@
+
+reset(0);
+
+function reset(wins) {
+    
 var musician = "M a d o n n a";
 var numberOfGuesses = 10;
-var numberOfWins = 0;
+var numberOfWins = wins;
 var lettersGuessed = "";
 var currentWord = null;
 var initializePlaceholder = true;
 var musicianPlaceholder = "";
 var guesses = [];
 
+
+
+
 document.onkeyup = function(event) {
+
+    winsText = document.getElementById("Wins");
+    winsText.textContent = numberOfWins;
 
     currentWord = document.getElementById("current_word"); 
 
@@ -98,6 +109,7 @@ function winFunction() {
     var winsString = document.getElementById("Wins");
     numberOfWins++;
     winsString.textContent = numberOfWins;
+    reset(numberOfWins);
 }
 
 function compareNames(name, musician) {
@@ -109,4 +121,6 @@ function compareNames(name, musician) {
         }
     }
     return true;
+}
+
 }
