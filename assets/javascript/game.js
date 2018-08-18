@@ -1,4 +1,4 @@
-var musician = "M a d";
+var musician = "M a d o n n a";
 var numberOfGuesses = 11;
 var numberOfWins = 0;
 var lettersGuessed = "";
@@ -26,7 +26,14 @@ document.onkeyup = function(event) {
 
     // Determines which key was pressed.
     var userGuess = event.key;
-    // alert(userGuess);
+    alert(userGuess);
+
+    if (userGuess == " ") {
+        name = prompt("Enter the musician's name");
+        if (compareNames(name, musician)) {
+            winFunction();
+        }
+    }
 
     if (guesses.indexOf(userGuess) == -1) {
 
@@ -72,10 +79,7 @@ document.onkeyup = function(event) {
         lettersGuessedDiv.textContent = lettersGuessed;
 
         if (musicianPlaceholder == musician) {
-            alert("You won!");
-            var winsString = document.getElementById("Wins");
-            numberOfWins++;
-            winsString.textContent = numberOfWins;
+            winFunction();
         }
 
     }
@@ -88,4 +92,22 @@ function getAllIndices(arr, val) {
         indices.push(i);
     }
     return indices;
+}
+
+function winFunction() {
+    alert("You won!");
+    var winsString = document.getElementById("Wins");
+    numberOfWins++;
+    winsString.textContent = numberOfWins;
+}
+
+function compareNames(name, musician) {
+    for (var i=0, k=0; i<name.length, k<musician.length; i++, k+=2) {
+        if (name[i] == musician[k]){
+            continue;
+        } else {
+            return false;
+        }
+    }
+    return true;
 }
