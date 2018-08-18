@@ -1,5 +1,5 @@
 var musician = "M a d o n n a";
-var numberOfGuesses = 11;
+var numberOfGuesses = 10;
 var numberOfWins = 0;
 var lettersGuessed = "";
 var currentWord = null;
@@ -35,6 +35,11 @@ document.onkeyup = function(event) {
         }
     }
 
+    numberOfGuesses--;
+
+    var guessNumber = document.getElementById("guess_number"); 
+    guessNumber.textContent = numberOfGuesses;
+
     if (guesses.indexOf(userGuess) == -1) {
 
         guesses.push(userGuess);
@@ -62,19 +67,13 @@ document.onkeyup = function(event) {
             }
 
             musicianPlaceholder = newMusicianPlaceholder;
-
-            //Second, display what letters have been guessed
-            lettersGuessed += musician[userGuessIndices[0]];
-            lettersGuessed += " ";
-        }    
+        }   
         // alert(musicianPlaceholder);
         currentWord.textContent = musicianPlaceholder;
 
-        numberOfGuesses--;
-
-        var guessNumber = document.getElementById("guess_number"); 
-        guessNumber.textContent = numberOfGuesses;
-
+        // display what letters have been guessed
+        lettersGuessed += userGuess;
+        lettersGuessed += " ";
         var lettersGuessedDiv = document.getElementById("letters_guessed");
         lettersGuessedDiv.textContent = lettersGuessed;
 
