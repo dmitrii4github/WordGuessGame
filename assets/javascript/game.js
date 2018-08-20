@@ -1,11 +1,13 @@
+var numberOfWins = 0;
+var numberOfGuesses = 13;
 
-reset(0);
+reset(0, 13);
 
-function reset(wins) {
+function reset(wins, g) {
     
 var musician = "M a d o n n a";
-var numberOfGuesses = 10;
-var numberOfWins = wins;
+numberOfGuesses = g;
+numberOfWins = wins;
 var lettersGuessed = "";
 var currentWord = null;
 var initializePlaceholder = true;
@@ -15,10 +17,19 @@ var guesses = [];
 
 
 
+
+
 document.onkeyup = function(event) {
 
     winsText = document.getElementById("Wins");
     winsText.textContent = numberOfWins;
+    
+    alert("Setting guessNumber to "+numberOfGuesses);
+    var guessNumber = document.getElementById("guess_number"); 
+    guessNumber.textContent = numberOfGuesses;
+
+    var you_won = document.getElementById("you_won");
+    you_won.textContent = "";
 
     currentWord = document.getElementById("current_word"); 
 
@@ -91,8 +102,12 @@ document.onkeyup = function(event) {
         if (musicianPlaceholder == musician) {
             winFunction();
         }
-
     }
+
+    if (numberOfGuesses == 0) {
+        loseFunction();
+    }
+}
 
 }
 
@@ -105,11 +120,28 @@ function getAllIndices(arr, val) {
 }
 
 function winFunction() {
-    alert("You won!");
+    var guessNumber = document.getElementById("guess_number"); 
+    guessNumber.textContent = "13";
+    //alert("You won!");
+    var you_won = document.getElementById("you_won");
+    you_won.textContent = "YOU WON!!!!!"
     var winsString = document.getElementById("Wins");
     numberOfWins++;
     winsString.textContent = numberOfWins;
-    reset(numberOfWins);
+    var letters_guessed = document.getElementById("letters_guessed");
+    letters_guessed.textContent = "";
+    reset(numberOfWins, 13);
+}
+
+function loseFunction() {
+    var guessNumber = document.getElementById("guess_number"); 
+    guessNumber.textContent = "13";
+    //alert("You won!");
+    var you_won = document.getElementById("you_won");
+    you_won.textContent = "YOU LOST!!!!!"
+    var letters_guessed = document.getElementById("letters_guessed");
+    letters_guessed.textContent = "";
+    reset(numberOfWins, 13);
 }
 
 function compareNames(name, musician) {
@@ -123,4 +155,3 @@ function compareNames(name, musician) {
     return true;
 }
 
-}
