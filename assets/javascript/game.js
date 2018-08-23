@@ -1,14 +1,17 @@
 var numberOfWins = 0;
 var numberOfGuesses = 13;
-var musician = "M a d o n n a";
+var musicianMadonna = "M a d o n n a";
+var musicianStarship = "S t a r s h i p";
 var madonnaImage = "https://imgix.ranker.com/user_node_img/50040/1000793306/original/young-madonna-in-shiny-black-jacket-and-scarf-photo-u1?w=200&q=50&fm=jpg&fit=crop&crop=faces";
 var madonnaSound = "assets/sounds/Frozen.mp3";
+var starshipImage = "https://cbssanfran.files.wordpress.com/2017/04/starship_historical.jpg?w=200";
+var starshipSound = "assets/sounds/WeBuiltThisCity.mp3";
 
 $(document).ready(function() {
 
-reset(0, 13);
+reset(0, 13, musicianStarship);
 
-function reset(wins, g) {
+function reset(wins, g, musician) {
     
 numberOfGuesses = g;
 numberOfWins = wins;
@@ -143,6 +146,15 @@ function winFunction(m) {
         document.getElementById('band-photo').appendChild(img);
         var audioElement = document.createElement("audio");
         audioElement.setAttribute("src", madonnaSound);
+        audioElement.play();
+    } else {
+        var nameOfBand = document.getElementById("name-of-band");
+        nameOfBand.textContent = "WE BUILT THIS CITY BY STARSHIP";
+        var img = document.createElement("IMG");
+        img.src = starshipImage;
+        document.getElementById('band-photo').appendChild(img);
+        var audioElement = document.createElement("audio");
+        audioElement.setAttribute("src", starshipSound);
         audioElement.play();
     }
     reset(numberOfWins, 13);
