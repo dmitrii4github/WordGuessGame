@@ -1,11 +1,15 @@
 var numberOfWins = 0;
 var numberOfGuesses = 13;
+var musician = "M a d o n n a";
+var madonnaImage = "https://imgix.ranker.com/user_node_img/50040/1000793306/original/young-madonna-in-shiny-black-jacket-and-scarf-photo-u1?w=200&q=50&fm=jpg&fit=crop&crop=faces";
+var madonnaSound = "assets/sounds/Frozen.mp3";
+
+$(document).ready(function() {
 
 reset(0, 13);
 
 function reset(wins, g) {
     
-var musician = "M a d o n n a";
 numberOfGuesses = g;
 numberOfWins = wins;
 var lettersGuessed = "";
@@ -14,7 +18,8 @@ var initializePlaceholder = true;
 var musicianPlaceholder = "";
 var guesses = [];
 
-
+var guessNumber = document.getElementById("guess_number"); 
+guessNumber.textContent = "13";
 
 
 
@@ -53,18 +58,18 @@ document.onkeyup = function(event) {
     if (userGuess == " ") {
         name = prompt("Enter the musician's name");
         if (compareNames(name, musician)) {
-            winFunction();
+            winFunction(musician);
         }
     }
 
-    numberOfGuesses--;
-
-    var guessNumber = document.getElementById("guess_number"); 
-    guessNumber.textContent = numberOfGuesses;
 
     if (guesses.indexOf(userGuess) == -1) {
 
         guesses.push(userGuess);
+        numberOfGuesses--;
+
+        var guessNumber = document.getElementById("guess_number"); 
+        guessNumber.textContent = numberOfGuesses;
 
         //Display the letter
         var userGuessIndices = getAllIndices(musician, userGuess[0]);
@@ -100,7 +105,7 @@ document.onkeyup = function(event) {
         lettersGuessedDiv.textContent = lettersGuessed;
 
         if (musicianPlaceholder == musician) {
-            winFunction();
+            winFunction(musician);
         }
     }
 
@@ -119,7 +124,7 @@ function getAllIndices(arr, val) {
     return indices;
 }
 
-function winFunction() {
+function winFunction(m) {
     var guessNumber = document.getElementById("guess_number"); 
     guessNumber.textContent = "13";
     //alert("You won!");
@@ -130,6 +135,16 @@ function winFunction() {
     winsString.textContent = numberOfWins;
     var letters_guessed = document.getElementById("letters_guessed");
     letters_guessed.textContent = "";
+    if (m == "M a d o n n a") {
+        var nameOfBand = document.getElementById("name-of-band");
+        nameOfBand.textContent = "FROZEN BY MADONNA";
+        var img = document.createElement("IMG");
+        img.src = madonnaImage;
+        document.getElementById('band-photo').appendChild(img);
+        var audioElement = document.createElement("audio");
+        audioElement.setAttribute("src", madonnaSound);
+        audioElement.play();
+    }
     reset(numberOfWins, 13);
 }
 
@@ -154,4 +169,6 @@ function compareNames(name, musician) {
     }
     return true;
 }
+
+});
 
