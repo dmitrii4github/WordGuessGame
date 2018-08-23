@@ -138,26 +138,27 @@ function winFunction(m) {
     winsString.textContent = numberOfWins;
     var letters_guessed = document.getElementById("letters_guessed");
     letters_guessed.textContent = "";
+    var audioElement = document.createElement("audio");
+    var nameOfBand = document.getElementById("name-of-band");
+    var img = document.createElement("IMG");
     if (m == "M a d o n n a") {
-        var nameOfBand = document.getElementById("name-of-band");
         nameOfBand.textContent = "FROZEN BY MADONNA";
-        var img = document.createElement("IMG");
         img.src = madonnaImage;
         document.getElementById('band-photo').appendChild(img);
-        var audioElement = document.createElement("audio");
         audioElement.setAttribute("src", madonnaSound);
         audioElement.play();
     } else {
-        var nameOfBand = document.getElementById("name-of-band");
         nameOfBand.textContent = "WE BUILT THIS CITY BY STARSHIP";
-        var img = document.createElement("IMG");
         img.src = starshipImage;
         document.getElementById('band-photo').appendChild(img);
-        var audioElement = document.createElement("audio");
         audioElement.setAttribute("src", starshipSound);
         audioElement.play();
     }
-    reset(numberOfWins, 13);
+    confirm("Would you like to guess another mucisician?");
+    audioElement.pause();
+    nameOfBand.textContent = "";
+    document.getElementById('band-photo').removeChild(img);
+    reset(numberOfWins, 13, musicianMadonna);
 }
 
 function loseFunction() {
