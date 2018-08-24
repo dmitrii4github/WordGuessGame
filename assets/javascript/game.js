@@ -32,7 +32,7 @@ document.onkeyup = function(event) {
     winsText = document.getElementById("Wins");
     winsText.textContent = numberOfWins;
     
-    alert("Setting guessNumber to "+numberOfGuesses);
+    //alert("Setting guessNumber to "+numberOfGuesses);
     var guessNumber = document.getElementById("guess_number"); 
     guessNumber.textContent = numberOfGuesses;
 
@@ -56,7 +56,7 @@ document.onkeyup = function(event) {
 
     // Determines which key was pressed.
     var userGuess = event.key;
-    alert(userGuess);
+    //alert(userGuess);
 
     if (userGuess == " ") {
         name = prompt("Enter the musician's name");
